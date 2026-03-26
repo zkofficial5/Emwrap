@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 6% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 240 5% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 240 5% 14%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 160 64% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 85%;
+
+    --muted: 240 4% 18%;
+    --muted-foreground: 240 5% 55%;
+
+    --accent: 160 64% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 4% 20%;
+    --input: 240 4% 20%;
+    --ring: 160 64% 40%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 240 6% 8%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 160 64% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 14%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 160 64% 40%;
+
+    --success: 160 64% 40%;
+    --expense: 0 72% 55%;
+    --glass: 240 5% 14%;
+    --glass-border: 240 4% 22%;
+
+    --glow-primary: 160 84% 50%;
+  }
+
+  .light {
+    --background: 0 0% 97%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 160 64% 36%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 92%;
+    --secondary-foreground: 240 6% 25%;
+
+    --muted: 240 5% 94%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 160 64% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 88%;
+    --input: 240 6% 88%;
+    --ring: 160 64% 36%;
+
+    --sidebar-background: 0 0% 99%;
+    --sidebar-foreground: 240 6% 25%;
+    --sidebar-primary: 160 64% 36%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 94%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 160 64% 36%;
+
+    --success: 160 64% 36%;
+    --expense: 0 72% 50%;
+    --glass: 0 0% 100%;
+    --glass-border: 240 6% 90%;
+
+    --glow-primary: 160 84% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-xl border border-glass-border rounded-xl shadow-lg;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 0 24px -6px hsl(var(--glow-primary) / 0.15),
+                0 8px 32px -8px hsl(var(--background) / 0.4);
+    border-color: hsl(var(--primary) / 0.3);
+    transform: translateY(-1px);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+  }
+
+  .glow-dot {
+    box-shadow: 0 0 8px 2px currentColor;
+  }
+}

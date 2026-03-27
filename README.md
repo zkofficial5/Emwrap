@@ -93,52 +93,6 @@ The export endpoint writes directly to PHP's output buffer via a stream response
 
 ---
 
-## 🚀 Running Locally
-
-### Prerequisites
-
-- PHP 8.2+, Composer
-- MySQL (XAMPP recommended)
-- Node.js 18+
-
-### Backend
-
-```bash
-cd backend
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
-php artisan serve
-```
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-> The Vite dev server proxies all `/api` requests to `http://127.0.0.1:8000` — no additional CORS configuration required during local development.
-
-### Environment Variables
-
-```env
-DB_DATABASE=emwrap
-DB_USERNAME=root
-DB_PASSWORD=
-
-SANCTUM_STATEFUL_DOMAINS=localhost:8080
-FRONTEND_URL=http://localhost:8080
-
-OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxx
-
-MAIL_MAILER=log
-```
-
----
-
 ## 📁 Project Structure
 
 ```

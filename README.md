@@ -122,6 +122,6 @@ emwrap/
 
 <div align="center">
 
-_Part of a PHP developer internship portfolio — backend engineered with Laravel 11, frontend crafted with React and Vite_
+backend engineered with Laravel 11, frontend crafted with React and Vite_
 
 </div>

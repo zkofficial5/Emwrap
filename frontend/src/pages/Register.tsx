@@ -15,9 +15,19 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await register(name, email, password);
-    setLoading(false);
-    navigate("/dashboard");
+    try {
+      await register(name, email, password);
+      navigate("/dashboard");
+    } catch (err: any) {
+      const errors = err.response?.data?.errors;
+      const msg = errors
+        ? (Object.values(errors)[0] as string)
+        : err.response?.data?.message ||
+          "Registration failed. Please try again.";
+      alert(msg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,26 +59,75 @@ const Register = () => {
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
+              transition={{
+                delay: 0.2,
+                type: "spring",
+                stiffness: 200,
+                damping: 15,
+              }}
               className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/20 ring-2 ring-primary/30"
             >
-              <span className="text-2xl font-bold text-primary glow-text">$</span>
+              <span className="text-2xl font-bold text-primary glow-text">
+                $
+              </span>
             </motion.div>
-            <h1 className="text-2xl font-bold text-foreground">Create account</h1>
-            <p className="mt-1 text-sm text-muted-foreground">Start tracking your expenses</p>
+            <h1 className="text-2xl font-bold text-foreground">
+              Create account
+            </h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Start tracking your expenses
+            </p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 }}>
-              <label className="text-sm font-medium text-muted-foreground">Name</label>
-              <input value={name} onChange={(e) => setName(e.target.value)} required className="mt-1 w-full rounded-lg border border-border bg-background/80 px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="Your name" />
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.25 }}
+            >
+              <label className="text-sm font-medium text-muted-foreground">
+                Name
+              </label>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="mt-1 w-full rounded-lg border border-border bg-background/80 px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                placeholder="Your name"
+              />
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35 }}>
-              <label className="text-sm font-medium text-muted-foreground">Email</label>
-              <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required className="mt-1 w-full rounded-lg border border-border bg-background/80 px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="you@example.com" />
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.35 }}
+            >
+              <label className="text-sm font-medium text-muted-foreground">
+                Email
+              </label>
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                required
+                className="mt-1 w-full rounded-lg border border-border bg-background/80 px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                placeholder="you@example.com"
+              />
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.45 }}>
-              <label className="text-sm font-medium text-muted-foreground">Password</label>
-              <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" required className="mt-1 w-full rounded-lg border border-border bg-background/80 px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="••••••••" />
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.45 }}
+            >
+              <label className="text-sm font-medium text-muted-foreground">
+                Password
+              </label>
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                required
+                className="mt-1 w-full rounded-lg border border-border bg-background/80 px-3 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all"
+                placeholder="••••••••"
+              />
             </motion.div>
             <motion.button
               initial={{ opacity: 0, y: 10 }}
@@ -84,7 +143,13 @@ const Register = () => {
             </motion.button>
           </form>
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            Already have an account? <Link to="/login" className="text-primary font-medium hover:underline">Sign in</Link>
+            Already have an account?{" "}
+            <Link
+              to="/login"
+              className="text-primary font-medium hover:underline"
+            >
+              Sign in
+            </Link>
           </p>
         </div>
       </motion.div>

@@ -15,6 +15,7 @@ import BudgetPage from "@/pages/BudgetPage";
 import Reports from "@/pages/Reports";
 import SettingsPage from "@/pages/SettingsPage";
 import NotFound from "@/pages/NotFound";
+import Chat from "@/pages/Chat";
 
 const queryClient = new QueryClient();
 
@@ -30,13 +31,17 @@ const App = () => (
               <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/" element={<Navigate to="/dashboard" replace />} />
+                <Route
+                  path="/"
+                  element={<Navigate to="/dashboard" replace />}
+                />
                 <Route element={<AppLayout />}>
                   <Route path="/dashboard" element={<Dashboard />} />
                   <Route path="/expenses" element={<Expenses />} />
                   <Route path="/budget" element={<BudgetPage />} />
                   <Route path="/reports" element={<Reports />} />
                   <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/chat" element={<Chat />} />
                 </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
